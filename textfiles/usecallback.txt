@@ -1,0 +1,28 @@
+Alright! Imagine you have a magical coloring book that lets its drawings come to life. Every time you color a picture, it jumps out of the book and becomes real. Now, imagine you really like a particular drawing of a rocket. You color it, and a real rocket appears. Cool, right? But here's the thing: every time you want to play with the rocket again, instead of using the one you already made, you color it anew, making a new rocket appear. That sounds a bit silly and wasteful, doesn't it? Why make a new rocket when you already have one?
+In the world of React (a way to make websites), there's something a bit like our magical coloring book called useCallback. It's a special tool that helps us avoid making new "rockets" (or in React, new functions) every time we do something, like clicking a button if we don't really need to.
+Let me give you an example to make it clearer:
+Imagine you're making a simple game on a website where you have a button that says "Launch Rocket!" Every time you press this button, a rocket launches. This button uses a function (a set of instructions) to launch the rocket.
+
+function launchRocket() {
+  console.log("Rocket is launched!");
+}
+
+
+In React, if you create this function inside a component (a piece of your website), React will make this function anew every time something changes on the screen, even if the function itself doesn't need to change. This isn't a big deal for small websites, but for big, complicated ones, it can slow things down.
+So, we use useCallback to tell React, "Hey, keep using the same launchRocket function unless something important changes. No need to make a new one every time."
+Here's how we might write that with useCallback:
+
+
+import React, { useCallback } from 'react';
+
+function MyComponent() {
+  const launchRocket = useCallback(() => {
+    console.log("Rocket is launched!");
+  }, []); // The empty array means nothing needs to change for us to reuse the function.
+
+  return <button onClick={launchRocket}>Launch Rocket!</button>;
+}
+
+
+useEffect is all about watching for changes. When something changes (or when the component first loads), it runs some code in response, like setting up or cleaning up things. It's reactive, responding to changes.
+
